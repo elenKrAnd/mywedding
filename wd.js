@@ -5,7 +5,14 @@ const circle = document.getElementById('slider-circle');
 let isDragging = false;
 let startX = 0;
 let currentX = 0;
-const maxSlide = 200; // сколько пикселей тянуть вправо
+let maxSlide = 400; // значение будет обновлено ниже
+
+function updateMaxSlide() {
+  maxSlide = window.innerWidth < 480 ? 100 : 400;
+}
+
+window.addEventListener('resize', updateMaxSlide);
+updateMaxSlide(); // вызвать при старте
 
 function setCirclePosition(x) {
   circle.style.left = `${Math.min(x, maxSlide)}px`;
@@ -18,6 +25,7 @@ function resetSlider() {
     circle.style.transition = '';
   }, 300);
 }
+
 
 function completeSlide() {
   splash.classList.add('fade-out');
@@ -112,20 +120,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-
     const drinks = formData.getAll("drink");
 
-    console.log("Форма отправлена!");
-    console.log("Имя:", data.name);
-    console.log("Будет ли присутствовать:", data.attendance);
-    console.log("Гость:", data.guestName || "Без гостя");
-    console.log("Предпочтения:", drinks.join(", ") || "Не выбрано");
-    console.log("Ваш вариант", data.typedrink);
+    // Добавляем напитки и тип напитка в объект
+    data.drinks = drinks;
+    data.typedrink = formData.get("typedrink");
 
-    alert("Спасибо! Ваша заявка отправлена.");
-    form.reset();
+    // Отправляем данные на backend
+    fetch("http://localhost:8080/api/rsvp", { // <-- адрес твоего backend
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ошибка при отправке данных");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        console.log("Ответ от сервера:", result);
+        alert("Спасибо! Ваша заявка отправлена.");
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("Ошибка:", error);
+        alert("Произошла ошибка при отправке. Попробуйте позже.");
+      });
   });
 });
+
 
 // Укажи здесь дату свадьбы
 const weddingDate = new Date("2025-08-27T00:00:00").getTime();
@@ -152,3 +178,30 @@ function updateTimer() {
 
 setInterval(updateTimer, 1000);
 updateTimer(); // для запуска сразу при загрузке
+
+const slides = document.querySelectorAll('.wish-slide');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const pageIndicator = document.getElementById('pageIndicator');
+
+let currentIndex = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+  });
+  pageIndicator.textContent = `${index + 1} / ${slides.length}`;
+}
+
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  showSlide(currentIndex);
+});
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  showSlide(currentIndex);
+});
+
+// Инициализация
+showSlide(currentIndex);

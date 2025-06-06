@@ -211,7 +211,7 @@
   </section>
 
   <section class="place-section fade-in-on-scroll fade-delay-7">
-    <img class="foto2venz" src="/венз.png" alt="Фото 1"> 
+    <img class="foto2venz" src="/венз.png" alt="Фото 1">
     <div class="place-heading">Локация</div>
 
     <div class="places-wrapper">
@@ -231,7 +231,7 @@
     </div>
   </section>
 
-   <div class="countdown-container fade-in-on-scroll fade-delay-8">
+  <div class="countdown-container fade-in-on-scroll fade-delay-8">
     <h1>До нашей свадьбы осталось:</h1>
     <div id="timer" class="time-countdown">
       <span id="days">00</span> дней
@@ -241,54 +241,106 @@
     </div>
   </div>
 
+  <div class="wishes-container fade-in-on-scroll fade-delay-9">
+    <h1 class="titleWish">Пожелания:</h1>
 
-<div class="body-form fade-in-on-scroll fade-delay-9">
-<div class="form-wrapper">
-    <form id="rsvpForm">
-      <h2>Пожалуйста, пройдите опрос:</h2>
-      <div class="divider"></div>
-
-      <input type="text" name="name" placeholder="Имя и Фамилия" required />
-
-      <p>Планируете ли Вы присутствовать?</p>
-      <label><input type="radio" name="attendance" value="yes" required /> Да, с удовольствием</label>
-      <label><input type="radio" name="attendance" value="no" /> Не смогу</label>
-
-      <p>Если Вы будете не одни, пожалуйста, заполните поле ниже:</p>
-      <input type="text" name="guestName" placeholder="Имя и Фамилия" />
-
-      <p>Ваши предпочтения</p>
-      <div class="preferences">
-        <label><input type="checkbox" name="drink" value="Шампанское" /> Шампанское</label>
-        <label><input type="checkbox" name="drink" value="Белое вино" /> Белое вино</label>
-        <label><input type="checkbox" name="drink" value="Красное вино" /> Красное вино</label>
-        <label><input type="checkbox" name="drink" value="Виски" /> Виски</label>
-        <label><input type="checkbox" name="drink" value="Водка" /> Водка</label>
-        <label><input type="checkbox" name="drink" value="Джин" /> Джин</label>
-        <label><input type="checkbox" name="drink" value="Ром" /> Ром</label>
-        <label><input type="checkbox" name="drink" value="Не пью алкоголь" /> Не пью алкоголь</label>
-        <label><input type="text" name="typedrink" placeholder="Ваш вариант" />
+    <div class="wish-slider">
+      <div class="wish-slide active">
+        <p>"Будем очень признательны, если Вы воздержитесь от криков «Горько». Ведь поцелуй – это знак выражения чувств,
+          и он не может быть по заказу."</p>
       </div>
+      <div class="wish-slide">
+        <p>"Пожалуйста, не дарите нам цветы! Мы не успеем насладиться их красотой и ароматом. Если хотите подарить нам
+          ценный и нужный подарок, мы будем очень благодарны за вклад в бюджет нашей молодой семьи."</p>
+      </div>
+      <div class="wish-slide">
+        <p>"Главное — ваше присутствие, улыбки и хорошее настроение. Спасибо, что вы с нами!"</p>
+      </div>
+    </div>
 
-      <div class="divider diamond"></div>
-
-      <button type="submit">ОТПРАВИТЬ →</button>
-    </form>
+    <div class="slider-controls">
+      <button id="prevBtn">←</button>
+      <span id="pageIndicator">1 / 3</span>
+      <button id="nextBtn">→</button>
+    </div>
   </div>
+
+
+  <div class="all-form-inf fade-in-on-scroll fade-delay-10">
+    <div class="form-heading">Анкета гостя</div>
+    <div class="form-mini">Пожалуйста, подтвердите своё присутствие на мероприятии до: </br>
+      20 / 07 / 2025</div>
+    <div class="body-form">
+      <div class="form-wrapper">
+        <form id="rsvpForm">
+
+          <div class="divider"></div>
+
+          <input type="text" name="name" placeholder="Имя и Фамилия" required />
+
+          <p>Планируете ли Вы присутствовать?</p>
+          <label><input type="radio" name="attendance" value="yes" required /> Да, с удовольствием</label>
+          <label><input type="radio" name="attendance" value="no" /> Не смогу</label>
+
+          <p>Если Вы будете не одни, пожалуйста, заполните поле ниже:</p>
+          <input type="text" name="guestName" placeholder="Имя и Фамилия" />
+
+          <p>Ваши предпочтения</p>
+          <div class="preferences">
+            <label><input type="checkbox" name="drink" value="Шампанское" /> Шампанское</label>
+            <label><input type="checkbox" name="drink" value="Белое вино" /> Белое вино</label>
+            <label><input type="checkbox" name="drink" value="Красное вино" /> Красное вино</label>
+            <label><input type="checkbox" name="drink" value="Виски" /> Виски</label>
+            <label><input type="checkbox" name="drink" value="Водка" /> Водка</label>
+            <label><input type="checkbox" name="drink" value="Джин" /> Джин</label>
+            <label><input type="checkbox" name="drink" value="Ром" /> Ром</label>
+            <label><input type="checkbox" name="drink" value="Не пью алкоголь" /> Не пью алкоголь</label>
+            <label><input type="text" name="typedrink" placeholder="Ваш вариант" />
+          </div>
+
+          <div class="divider diamond"></div>
+
+          <button type="submit">ОТПРАВИТЬ →</button>
+        </form>
+      </div>
+    </div>
   </div>
 
- <div class="contact-container">
-    <h1>Контакты</h1>
-    <p class="subtext">По всем вопросам, связанным с мероприятием, Вы можете связаться с нами:</p>
-    <h2>Владимир</h2>
-    <p class="phone">+7 (905) 764-31-60</p>
-    <div class="decorative-line">❧</div>
-    <a href="tel:+79268887788" class="button">СВЯЗАТЬСЯ →</a>
+  <div class="contacts-wrapper fade-in-on-scroll fade-delay-11">
+    <div class="contact-container">
+      <h1>Контакты молодых:</h1>
+      <p class="subtext">Если Вам необходимо задать вопросы молодоженам, то вот их номера:</p>
+      <h2>Владимир</h2>
+      <p class="phone">+7 (905) 764-31-60</p>
+      <h2>Елена</h2>
+      <p class="phone">+7 (918) 183-40-83</p>
+      <div class="decorative-line">♥</div>
+      <a href="https://wa.me/79057643160" class="button" target="_blank">ЖЕНИХ →</a>
+      <a href="https://wa.me/79181834083" class="button" target="_blank">НЕВЕСТА →</a>
+
+
+    </div>
+    <div class="contact-container">
+      <h1>Контакты ораганизотора:</h1>
+      <p class="subtext">Если Вам необходимо, то вот его номер:</p>
+      <h2>Роман</h2>
+      <p class="phone">+7 (926) 390-96-13</p>
+      <h2>Мария</h2>
+      <p class="phone">+7 (916) 238-74-08</p>
+      <div class="decorative-line">♥</div>
+      <a href="https://wa.me/79263909613" class="button" target="_blank">РОМАН →</a>
+      <a href="https://wa.me/79162387408" class="button" target="_blank">МАРИЯ →</a></div>
+  </div>
+
+  <div class="end fade-in-on-scroll fade-delay-12">
+    <div class="end-text">
+      До скорой встречи! С любовью, <br />
+      <strong>ВЛАДИМИР</strong> & <strong>ЕЛЕНА</strong>
+    </div>
   </div>
 
 
-
-<script src="wd.js"></script>
+  <script src="wd.js"></script>
 </body>
 
 </html>
