@@ -204,9 +204,8 @@ h1.title {
     font-size: 300%;
     line-height: 1.5;
     font-family: 'SMHeadersFont';
-
     font-weight: lighter;
-    color: #baad93;
+    color:#a18e8e;
 
 
 }
@@ -235,7 +234,7 @@ h1.title {
 .calendar-box h3 {
     font-size: 300%;
     margin-bottom: 20px;
-    color: #8d7878;
+    color: #b29d9d;
     font-family: 'SMHeadersFont';
     font-weight: lighter;
 }
@@ -261,10 +260,18 @@ h1.title {
 }
 
 .calendar-grid .highlight {
-    background-color: #a29595;
-    color: white;
-    border-radius: 70%;
-    font-weight: bold;
+  position: relative;
+  color: transparent; /* скрыть текст */
+}
+
+.calendar-grid .highlight::before {
+  content: '❤';
+  color: #b39894;
+  font-size: 3em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
