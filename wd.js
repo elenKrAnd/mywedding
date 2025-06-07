@@ -115,40 +115,31 @@ const carousels = {
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("rsvpForm");
 
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
     const drinks = formData.getAll("drink");
+    const typedrink = formData.get("typedrink");
+    const payload = {
+      fio: formData.get("name"),
+      willGo: formData.get("attendance") === "yes",
+      withWhom: formData.get("guestName") || "",
+      preferences: [...drinks, typedrink].filter(Boolean).join(", ")
+    };
 
-    // Добавляем напитки и тип напитка в объект
-    data.drinks = drinks;
-    data.typedrink = formData.get("typedrink");
-
-    // Отправляем данные на backend
-    fetch("http://localhost:8080/api/rsvp", { // <-- адрес твоего backend
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Ошибка при отправке данных");
-        }
-        return response.json();
-      })
-      .then((result) => {
-        console.log("Ответ от сервера:", result);
-        alert("Спасибо! Ваша заявка отправлена.");
-        form.reset();
-      })
-      .catch((error) => {
-        console.error("Ошибка:", error);
-        alert("Произошла ошибка при отправке. Попробуйте позже.");
+    try {
+      const response = fetch("https://wedding.noxly.ru/api/answers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
       });
+      alert("Спасибо! Заявка отправлена.");
+    } catch (err) {
+      alert("Не удалось отправить. Попробуйте позже.");
+    }
   });
 });
 
