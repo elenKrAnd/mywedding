@@ -115,14 +115,26 @@ const carousels = {
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("rsvpForm");
   const submitBtn = document.getElementById("submitBtn");
+  const messageBox = document.getElementById("messageBox");
+  const messageText = document.getElementById("messageText");
+  const closeMessageBtn = document.getElementById("closeMessageBtn");
 
   let formAlreadySubmitted = false;
+
+  function showMessage(text) {
+    messageText.textContent = text;
+    messageBox.style.display = "block";
+  }
+
+  closeMessageBtn.addEventListener("click", () => {
+    messageBox.style.display = "none";
+  });
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     if (formAlreadySubmitted) {
-      alert("Вы уже отправили ответ.");
+      showMessage("Вы уже отправили ответ.");
       return;
     }
 
@@ -147,17 +159,16 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(payload)
       });
 
-      alert("Спасибо! Заявка отправлена.");
+      showMessage("Спасибо! Заявка отправлена.");
       formAlreadySubmitted = true;
-
-      // Скрыть кнопку после успешной отправки
       submitBtn.style.display = "none";
     } catch (err) {
-      alert("Не удалось отправить. Попробуйте позже.");
+      showMessage("Не удалось отправить. Попробуйте позже.");
       submitBtn.disabled = false;
     }
   });
 });
+
 
 
 
