@@ -114,9 +114,19 @@ const carousels = {
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("rsvpForm");
+  const submitBtn = document.getElementById("submitBtn");
+
+  let formAlreadySubmitted = false;
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
+
+    if (formAlreadySubmitted) {
+      alert("Вы уже отправили ответ.");
+      return;
+    }
+
+    submitBtn.disabled = true;
 
     const formData = new FormData(form);
     const drinks = formData.getAll("drink");
@@ -129,19 +139,27 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     try {
-      const response = fetch("https://wedding.noxly.ru/api/answers", {
+      await fetch("https://wedding.noxly.ru/api/answers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
       });
+
       alert("Спасибо! Заявка отправлена.");
+      formAlreadySubmitted = true;
+
+      // Скрыть кнопку после успешной отправки
+      submitBtn.style.display = "none";
     } catch (err) {
       alert("Не удалось отправить. Попробуйте позже.");
+      submitBtn.disabled = false;
     }
   });
 });
+
+
 
 
 // Укажи здесь дату свадьбы
