@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(payload)
       });
 
-      showMessage("Спасибо! Заявка отправлена.");
+      showMessage("Спасибо! Мы Вас услышали ♥ ");
       formAlreadySubmitted = true;
       submitBtn.style.display = "none";
     } catch (err) {
