@@ -842,10 +842,11 @@ h1 {
         align-items: center;
         text-align: center;
         padding: 150px;
+    
     }
 
     .hero-text {
-        padding: 5% 5%;
+        padding: 5% 10%;
     }
 
     h1.title {
